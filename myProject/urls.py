@@ -20,10 +20,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^hello/', hello),
-    # url(r'^views/', views),
-    # url(r'^$','myApp.views.home'),
-    # url(r'^(\d+)/$','myApp.views.detail',name='detail'),
 ]
 
 from myApp.views import hello,views
