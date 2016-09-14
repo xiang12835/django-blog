@@ -30,12 +30,12 @@ urlpatterns += [
 
 # 设置url
 urlpatterns += [
-    url(r'^$','myApp.views.home', name='home'),
+    url(r'^$', 'myApp.views.home', name='home'),
 ]
 
 # 通过url向views传参
 urlpatterns += [
-    url(r'^(\d+)/$','myApp.views.detail',name='detail'),
+    url(r'^(\d+)/$', 'myApp.views.detail', name='detail'),
 ]
 
 # template
@@ -44,22 +44,22 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'^archives/$', 'myApp.views.archives', name = 'archives'),
+    url(r'^archives/$', 'myApp.views.archives', name='archives'),
 ]
 
 urlpatterns += [
-    url(r'^aboutme/$', 'myApp.views.about_me', name = 'about_me'),
+    url(r'^aboutme/$', 'myApp.views.about_me', name='about_me'),
 ]
 
 urlpatterns += [
-    url(r'^tag(?P<tag>\w+)/$', 'myApp.views.search_tag', name = 'search_tag'),
+    url(r'^tag/(?P<tag>\w+)/$', 'myApp.views.search_tag', name='search_tag'),
 ]
 
 urlpatterns += [
-    url(r'^search/$','myApp.views.blog_search', name = 'search'),
+    url(r'^search/$', 'myApp.views.blog_search', name='search'),
 ]
 
 from myApp.views import RSSFeed
 urlpatterns += [
-    url(r'^feed/$', RSSFeed(), name = "RSS"),  #新添加的urlconf, 并将name设置为RSS, 方便在模板中使用url
+    url(r'^feed/$', RSSFeed(), name="RSS"), # 新添加的urlconf, 并将name设置为RSS, 方便在模板中使用url
 ]
