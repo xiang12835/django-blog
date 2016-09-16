@@ -27,7 +27,7 @@ class Article(models.Model) :
     # 获取URL并转换成url的表示格式
     def get_absolute_url(self):
         path = reverse('detail', args=[self.id])
-        return "http://127.0.0.1:8000%s" % path
+        return "http://www.flyingfish.online%s" % path
 
     def __str__(self):
         return self.title
