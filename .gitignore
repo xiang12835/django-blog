@@ -1,5 +1,8 @@
 .idea/
-migrations/
+env2.7/
+myApp/migrations/
+myProject/settings.py
+db.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -11,7 +14,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env2.7/
 build/
 develop-eggs/
 dist/
