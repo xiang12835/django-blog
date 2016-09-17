@@ -3,27 +3,27 @@
 
 {% block content %}
 <div class="posts">
-        <section class="post">
-            <header class="post-header">
-                <h2 class="post-title">{{ post.title }}</h2>
-                    <p class="post-meta">
-                        Time:
-                        <a class="post-author" href="#">{{ post.date_time|date:'Y M d'}}</a>
-                        Category:
-                        <a class="post-category post-category-pure" href="{% url 'search_category' post.category %}">{{ post.category|title }}</a>
-                        Tag:
-                        {% for tag in tags %}
-                            <a class="post-category post-category-pure" href="{% url 'search_tag' tag.tag_name %}">{{ tag }}</a>
-                        {% endfor %}
-                    </p>
-            </header>
-
-            <div class="post-description">
-                <p>
-                    {{ post.content|custom_markdown }}
+    <section class="post">
+        <header class="post-header">
+            <h2 class="post-title">{{ post.title }}</h2>
+                <p class="post-meta">
+                    Time:
+                    <a class="post-author" href="#">{{ post.date_time|date:'Y M d'}}</a>
+                    Category:
+                    <a class="post-category post-category-pure" href="{% url 'search_category' post.category %}">{{ post.category|title }}</a>
+                    Tag:
+                    {% for tag in tags %}
+                        <a class="post-category post-category-pure" href="{% url 'search_tag' tag.tag_name %}">{{ tag }}</a>
+                    {% endfor %}
                 </p>
-            </div>
-        </section>
-        {% include "duoshuo.html" %}
+        </header>
+
+        <div class="post-description">
+            <p>
+                {{ post.content|custom_markdown }}
+            </p>
+        </div>
+    </section>
+    {% include "duoshuo.html" %}
 </div><!-- /.blog-post -->
 {% endblock %}

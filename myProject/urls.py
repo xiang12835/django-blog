@@ -39,6 +39,7 @@ urlpatterns += [
     url(r'^aboutme/$', 'myApp.views.about_me', name='about_me'),
     url(r'^category/(\w+)/$', 'myApp.views.search_category', name='search_category'),  # 分类
     url(r'^tag/(\w+)/$', 'myApp.views.search_tag', name='search_tag'),  # 标签
+    url(r'^tags/$', 'myApp.views.show_tags', name='show_tags'),  # 显示标签的页面
     url(r'^search/$', 'myApp.views.blog_search', name='blog_search'),  # 搜索
     url(r'^feed/$', RSSFeed(), name="RSS"),  # 新添加的urlconf, 并将name设置为RSS, 方便在模板中使用url
 ]

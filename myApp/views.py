@@ -8,7 +8,6 @@ from datetime import datetime
 from django.http import Http404
 
 # Create your views here.
-
 def hello(request):
     return HttpResponse("Hello world")
 
@@ -64,6 +63,9 @@ def archives(request):  # 归档
 
 def about_me(request):
     return render(request, 'aboutme.html')
+
+def show_tags(request):  # 标签管理页面
+    return render(request, 'showtags.html')
 
 def search_category(request, category):  # 分类
     try:

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
-{% load custom_markdown %}
 
 {% block content %}
 <div class="posts">
-        <p> About Me 正在建设中 </p>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="">Email: xiang12835@163.com</li>
+            <li class="">QQ: 953762287</li>
+        </ul>
+    </nav>
+    {% include "duoshuo.html" %}
 </div><!-- /.blog-post -->
 {% endblock %}
