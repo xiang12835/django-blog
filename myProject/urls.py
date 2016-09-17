@@ -33,11 +33,11 @@ urlpatterns += [
 # blog
 from myApp.views import RSSFeed
 urlpatterns += [
-    url(r'^$', 'myApp.views.home', name='home'),
-    url(r'^(\d+)/$', 'myApp.views.detail', name='detail'),  # 通过url向views传参
-    url(r'^archives/$', 'myApp.views.archives', name='archives'),
+    url(r'^$', 'myApp.views.home', name='home'),  # 首页
+    url(r'^(\d+)/$', 'myApp.views.detail', name='detail'),  # 通过url向views传参 # 详细文章
+    url(r'^archives/$', 'myApp.views.archives', name='archives'),  # 归档
     url(r'^aboutme/$', 'myApp.views.about_me', name='about_me'),
-    url(r'^tag/(\w+)/$', 'myApp.views.search_tag', name='search_tag'),
-    url(r'^search/$', 'myApp.views.blog_search', name='search'),
+    url(r'^category/(\w+)/$', 'myApp.views.search_category', name='search_category'),  # 分类
+    url(r'^search/$', 'myApp.views.blog_search', name='blog_search'),  # 搜索
     url(r'^feed/$', RSSFeed(), name="RSS"),  # 新添加的urlconf, 并将name设置为RSS, 方便在模板中使用url
 ]

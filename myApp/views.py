@@ -28,9 +28,9 @@ def test(request):
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 添加包
 
-def home(request):
+def home(request):  # 首页
     posts = Article.objects.all()  # 获取全部的Article对象
-    paginator = Paginator(posts, 2)  # 每页显示两个
+    paginator = Paginator(posts, 5)  # 每页显示数目
     page = request.GET.get('page')
     try:
         post_list = paginator.page(page)
@@ -47,14 +47,15 @@ def home(request):
 # 	str = ("title=%s,category=%s,date_time=%s,content=%s" % (post.title,post.category,post.date_time,post.content))
 # 	return HttpResponse(str)
 
-def detail(request, id):
+def detail(request, id):  # 文章详细内容
     try:
         post = Article.objects.get(id=str(id))
+        tags = post.tag.all()
     except Article.DoesNotExist:
         raise Http404
-    return render(request, 'post.html', {'post': post})
+    return render(request, 'detail.html', {'post': post, 'tags': tags})
 
-def archives(request):
+def archives(request):  # 归档
     try:
         post_list = Article.objects.all()
     except Article.DoesNotExist:
@@ -64,14 +65,14 @@ def archives(request):
 def about_me(request):
     return render(request, 'aboutme.html')
 
-def search_tag(request, tag):
+def search_category(request, tag):  # 分类
     try:
         post_list = Article.objects.filter(category__iexact=tag) #contains
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'tag.html', {'post_list': post_list})
 
-def blog_search(request):
+def blog_search(request):  # 搜索
     if 's' in request.GET:
         s = request.GET['s']
         if not s:
