@@ -15,8 +15,8 @@
                     Category:
                     <a class="post-category post-category-pure" href="{% url 'search_category' post.category %}">{{ post.category|title }}</a>
                     Tag:
-                    {% for tag in tags %}
-                        <a class="post-category post-category-pure" href="#">{{ tag }}</a>
+                    {% for tag in post.tag.all %}
+                        <a class="post-category post-category-pure" href="{% url 'search_tag' tag.tag_name %}">{{ tag }}</a>
                     {% endfor %}
                 </p>
             </header>

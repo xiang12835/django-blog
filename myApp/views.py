@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from myApp.models import Article
+from myApp.models import Article, Tag
 from datetime import datetime
 from django.http import Http404
 
@@ -30,7 +30,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 添�
 
 def home(request):  # 首页
     posts = Article.objects.all()  # 获取全部的Article对象
-    paginator = Paginator(posts, 5)  # 每页显示数目
+    paginator = Paginator(posts, 10)  # 每页显示数目
     page = request.GET.get('page')
     try:
         post_list = paginator.page(page)
@@ -65,9 +65,17 @@ def archives(request):  # 归档
 def about_me(request):
     return render(request, 'aboutme.html')
 
-def search_category(request, tag):  # 分类
+def search_category(request, category):  # 分类
     try:
-        post_list = Article.objects.filter(category__iexact=tag) #contains
+        post_list = Article.objects.filter(category__iexact=category)  # contains
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'category.html', {'post_list': post_list})
+
+def search_tag(request, tag):  # 标签
+    try:
+        tag = Tag.objects.filter(tag_name=tag).first()
+        post_list = tag.article_set.all()
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'tag.html', {'post_list': post_list})
