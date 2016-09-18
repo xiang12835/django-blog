@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
-    <title>{% block title %} Flyingfish Blog {% endblock %}</title>
+    <title>Flyingfish Blog</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
     <link rel="stylesheet" href="http://picturebag.qiniudn.com/blog.css">
@@ -15,13 +15,12 @@
 <div id="layout" class="pure-g">
     <div class="sidebar pure-u-1 pure-u-md-1-4">
         <div class="header">
-            <h1 class="brand-title">
-                <ul>
-                    <li style="list-style-type:none;"><img src="static/touxiang.jpg" width="100" height="100"/></li>
-                    <li style="list-style-type:none;"><a href="{% url 'home' %}">Flyingfish Blog</a></li>
-                </ul>
-            </h1>
-            <h2 class="brand-tagline">飞鱼在线</h2>
+            <a href="{% url 'home' %}">
+                <img src="http://www.flyingfish.online/static/touxiang.jpg" width="80" height="80">
+            </a>
+
+{#            <h1 class="brand-title"><a href="{% url 'home' %}">Flyingfish Blog</a></h1>#}
+            <h2 class="brand-tagline">积跬步，聚小流</h2>
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item">
