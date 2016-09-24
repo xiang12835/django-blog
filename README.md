@@ -1,18 +1,19 @@
 # Overview
-Blog system using django based on python
+Blog system using django and pure based on python
 
 # Done
-1. Django-bootstrap-admin优化后台管理
+1. Django-bootstrap-admin优化后台管理, Pure做前端
 2. markdown和代码高亮
 3. 多说评论
-4. aboutme
-5. 分类
-6. 标签
-7. 归档
-8. 搜索
-9. read more功能
-10. RSS功能
-11. 分页功能
+4. 分类
+5. 标签
+6. 归档
+7. 搜索
+8. read more功能
+9. RSS功能
+10. 分页功能
+11. aboutme
+12. CV
 
 # Requirements
 - python 2.7
