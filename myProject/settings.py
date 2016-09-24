@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'myProject.wsgi.application'
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'blogdb',
 #         'USER': 'root',
-#         'PASSWORD': 'yuxiang',
+#         'PASSWORD': 'root',
 #     }
 # }
 

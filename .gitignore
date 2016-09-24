@@ -1,6 +1,8 @@
 .idea/
 env2.7/
 myApp/migrations/
+myApp/migrations_local/
+myApp/migrations_online/
 myProject/settings.py
 db.sqlite3
 

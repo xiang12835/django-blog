@@ -7,6 +7,10 @@ from myApp.models import Article, Tag
 from datetime import datetime
 from django.http import Http404
 
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 # Create your views here.
 def hello(request):
     return HttpResponse("Hello world")
@@ -29,7 +33,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  # 添�
 
 def home(request):  # 首页
     posts = Article.objects.all()  # 获取全部的Article对象
-    paginator = Paginator(posts, 10)  # 每页显示数目
+    paginator = Paginator(posts, 5)  # 每页显示数目
     page = request.GET.get('page')
     try:
         post_list = paginator.page(page)
@@ -46,14 +50,6 @@ def home(request):  # 首页
 # 	str = ("title=%s,category=%s,date_time=%s,content=%s" % (post.title,post.category,post.date_time,post.content))
 # 	return HttpResponse(str)
 
-def detail(request, id):  # 文章详细内容
-    try:
-        post = Article.objects.get(id=str(id))
-        tags = post.tag.all()
-    except Article.DoesNotExist:
-        raise Http404
-    return render(request, 'detail.html', {'post': post, 'tags': tags})
-
 def archives(request):  # 归档
     try:
         post_list = Article.objects.all()
@@ -61,11 +57,21 @@ def archives(request):  # 归档
         raise Http404
     return render(request, 'archives.html', {'post_list': post_list, 'error': False})
 
-def about_me(request):
-    return render(request, 'aboutme.html')
+def article(request, id):  # 文章内容
+    try:
+        post = Article.objects.get(id=str(id))
+        tags = post.tag.all()
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'article.html', {'post': post, 'tags': tags})
 
-def show_tags(request):  # 标签管理页面
-    return render(request, 'showtags.html')
+def show_categories(request):  # 分类页面
+    try:
+        article_list = Article.objects.all()
+        count = len(article_list)
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'categories.html', {'article_list': article_list, 'count': count})
 
 def search_category(request, category):  # 分类
     try:
@@ -73,6 +79,9 @@ def search_category(request, category):  # 分类
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'category.html', {'post_list': post_list})
+
+def show_tags(request):  # 标签管理页面
+    return render(request, 'tags.html')
 
 def search_tag(request, tag):  # 标签
     try:
@@ -94,6 +103,9 @@ def blog_search(request):  # 搜索
             else:
                 return render(request, 'archives.html', {'post_list': post_list, 'error': False})
     return redirect('/')
+
+def about_me(request):
+    return render(request, 'aboutme.html')
 
 from django.contrib.syndication.views import Feed  # 注意加入import语句
 
