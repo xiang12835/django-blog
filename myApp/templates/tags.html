@@ -2,6 +2,9 @@
 
 {% block content %}
 <div class="posts">
-        <p> Tags页面正在建设中 …… </p>
+    <p style="text-align: center">目前共计 {{ count }} 个标签</p>
+    {% for tag in tag_list %}
+        <a class="post-category post-category-pure" href="{% url 'search_tag' tag.tag_name %}">{{ tag.tag_name }}</a>
+    {% endfor %}
 </div><!-- /.blog-post -->
 {% endblock %}

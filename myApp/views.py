@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from myApp.models import Article, Tag
+from myApp.models import Article, Tag, Category
 from datetime import datetime
 from django.http import Http404
 
@@ -67,25 +67,31 @@ def article(request, id):  # 文章内容
 
 def show_categories(request):  # 分类页面
     try:
-        article_list = Article.objects.all()
-        count = len(article_list)
+        category_list = Category.objects.all()
+        count = len(category_list)
     except Article.DoesNotExist:
         raise Http404
-    return render(request, 'categories.html', {'article_list': article_list, 'count': count})
+    return render(request, 'categories.html', {'category_list': category_list, 'count': count})
 
-def search_category(request, category):  # 分类
+def search_category(request, category_name):  # 分类
     try:
-        post_list = Article.objects.filter(category__iexact=category)  # contains
+        category_name = Category.objects.get(name=category_name)
+        post_list = category_name.article_set.all()
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'category.html', {'post_list': post_list})
 
 def show_tags(request):  # 标签管理页面
-    return render(request, 'tags.html')
-
-def search_tag(request, tag):  # 标签
     try:
-        tag = Tag.objects.filter(tag_name=tag).first()
+        tag_list = Tag.objects.all()
+        count = len(tag_list)
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'tags.html', {'tag_list': tag_list, 'count': count})
+
+def search_tag(request, tag_name):  # 标签
+    try:
+        tag = Tag.objects.get(tag_name=tag_name)
         post_list = tag.article_set.all()
     except Article.DoesNotExist:
         raise Http404

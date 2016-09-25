@@ -2,14 +2,14 @@
 
 {% block content %}
 <div class="posts">
-    <p>目前共计{{ count }}个分类</p>
-    {% for article in article_list %}
+    <p>目前共计 {{ count }} 个分类</p>
     <ul>
-        <li>
-            <a class="post-category post-category-pure" href="{% url 'search_category' post.category.name %}">{{ article.category.name }}</a>
+        {% for category in category_list %}
+        <li style="margin-bottom:15px">
+            <a class="post-category post-category-pure" href="{% url 'search_category' category.name %}" style="font-size: 15px;">{{ category.name }}</a>
         </li>
+        {% endfor %}
     </ul>
-    {% endfor %}
 
 </div><!-- /.blog-post -->
 {% endblock %}
